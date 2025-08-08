@@ -1,115 +1,118 @@
-# Flight-Price-Dashboard
+# Flight Price Predictor
 
-Flight Price Predictor
-Overview
-Flight Price Predictor is a machine learning-based web application that predicts the price of a flight ticket based on various user inputs such as airline, source city, destination, travel class, stops, and the number of days left until departure.
+## Overview
 
-The application is built using Python libraries including Pandas, Scikit-learn, and XGBoost, and features a user-friendly interface developed with Gradio. This allows users to get predictions without writing any code.
+**Flight Price Predictor** is a machine learning-powered web application that estimates flight ticket prices based on several travel details such as airline, cities, departure time, class, number of stops, and days left to travel.
 
-Dataset Used
-The dataset includes flight booking data with the following columns:
+It is built using:
 
-Airline (e.g., IndiGo, GO_FIRST)
+- Python
+- Pandas
+- Scikit-learn
+- XGBoost
+- Gradio
 
-Source City (e.g., Chennai, Delhi)
+The app features a **user-friendly interface** so anyone can interact with the model and get price predictions instantly.
 
-Destination City (e.g., Mumbai, Bangalore)
+---
 
-Departure Time (Morning, Afternoon, Evening, Night)
+## Dataset Used
 
-Stops (Non-stop, One, Two+)
+The dataset includes flight booking data with the following features:
 
-Class (Economy, Business)
+- **Airline** (e.g., IndiGo, GO_FIRST)
+- **Source City** (e.g., Chennai, Delhi)
+- **Destination City** (e.g., Mumbai, Bangalore)
+- **Departure Time** (Morning, Afternoon, Evening, Night)
+- **Stops** (Non-stop, One, Two+)
+- **Class** (Economy, Business)
+- **Days Left** (Days remaining until departure)
+- **Price** (Target variable — the actual ticket price)
 
-Days Left (Days remaining until departure)
+---
 
-Price (Target variable — the actual ticket price)
+## Features Used in the Model
 
-Features Used for Prediction
-The model uses the following input features:
+The model is trained on the following features:
 
-airline
+- `airline`
+- `source_city`
+- `destination_city`
+- `departure_time`
+- `stops`
+- `class`
+- `days_left`
 
-source_city
+These features are selected based on their strong influence on flight prices.
 
-destination_city
+---
 
-departure_time
+## How It Works
 
-stops
+### 1. **Data Preprocessing**
+- Cleaned and selected relevant columns
+- Handled categorical features using **Label Encoding**
+- Performed an 80/20 **Train-Test Split**
 
-class
+### 2. **Model Training**
+- Trained a `RandomForestRegressor` model
+- Saved the model as `price_model.pkl` and encoders as `price_encoders.pkl` using `joblib`
 
-days_left
+### 3. **Gradio Interface**
+- Built a simple, interactive UI using **Gradio Blocks**
+- Users enter inputs and get a predicted flight price
 
-These features are chosen based on their relevance and availability at the time of booking.
+---
 
-How It Works
-1. Data Preprocessing
-Cleaned the data and selected relevant columns
+## Example Inputs and Output
 
-Handled categorical variables using Label Encoding
+| Airline  | Source City | Destination City | Departure Time | Stops    | Class    | Days Left | Predicted Price |
+|----------|-------------|------------------|----------------|----------|----------|------------|-----------------|
+| GO_FIRST | Chennai     | Bangalore        | Afternoon      | One      | Business | 10         | ₹5412.50        |
+| IndiGo   | Delhi       | Mumbai           | Morning        | Non-stop | Economy  | 20         | ₹3125.00        |
 
-Split the data into training and testing sets (80/20 split)
+---
 
-2. Model Training
-Trained a RandomForestRegressor model
+## Tools and Libraries Used
 
-Performed evaluation on test data
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- XGBoost
+- Gradio
+- Joblib
 
-Saved the model (price_model.pkl) and encoders (price_encoders.pkl) using joblib
+---
 
-3. Gradio Interface
-Developed an interactive web interface using Gradio Blocks
+## How to Run This Project
 
-Inputs are taken via dropdowns and sliders
+1. Open the notebook in **Google Colab**
+2. Upload your dataset: `airlines_flights_data.csv`
+3. Run the cells for:
+    - Data preprocessing
+    - Model training
+    - Saving model and encoders
+    - Launching the Gradio interface
+4. Use the UI to interact with the model and get flight price predictions
 
-Prediction is displayed as the estimated ticket price
+---
 
-Example Inputs and Outputs
-Airline	Source City	Destination City	Departure Time	Stops	Class	Days Left	Predicted Price
-GO_FIRST	Chennai	Bangalore	Afternoon	One	Business	10	₹5412.50
-IndiGo	Delhi	Mumbai	Morning	Non-stop	Economy	20	₹3125.00
+## Use Cases
 
-Tools and Libraries Used
-Python
+- **Travel Budget Planning**: Estimate ticket prices before booking
+- **Airline Benchmarking**: Compare prices across airlines and routes
+- **EdTech**: Demonstrates real-world regression modeling
+- **App Integration**: Can be integrated into flight search tools or travel apps
 
-Pandas
+---
 
-Scikit-learn
+## About
 
-XGBoost
+This project showcases how a machine learning model can be trained on real-world data and deployed using Gradio to create a practical and visually appealing app.
 
-Gradio
+---
 
-Joblib
 
-How to Run the Project
-Open the notebook in Google Colab.
-
-Upload the dataset (airlines_flights_data.csv).
-
-Run the cells for:
-
-Data preprocessing
-
-Model training
-
-Saving the model and encoders
-
-Gradio app interface
-
-Launch the Gradio app to predict flight prices interactively.
-
-Use Cases
-Personal travel cost estimation
-
-Airline fare benchmarking
-
-Integration into travel booking apps
-
-Educational demonstration of regression models
-
-About
-This project demonstrates how machine learning regression models can be applied to real-world pricing problems with a clean UI for practical use.
+MIT License
 
